@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOBILE STORE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+        }
+        .mobile {
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 15px;
+            width: 300px;
+            text-align: center;
+        }
+        .mobile img {
+            width: 100%;
+            height: 50%;
+        }
+        .mobile h3 {
+            margin: 10px 0;
+        }
+        .mobile p {
+            font-size: 14px;
+            color: #555;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            background-color: #28a745;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>MOBILE STORE</h1>
+
+    <div id="mobile-list" class="container"></div>
+
+    <script>
+        // Example JSON data
+        const mobiles = [
+            {
+                "id": 1,
+                "name": "iPhone 14",
+                "brand": "Apple",
+                "price": 999,
+                "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6505/6505124_sd.jpg",
+                "description": "Latest iPhone model with A15 Bionic chip"
+            },
+            {
+                "id": 2,
+                "name": "Galaxy S22",
+                "brand": "Samsung",
+                "price": 799,
+                "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6472/6472835_sd.jpg",
+                "description": "Samsung flagship with excellent camera"
+            },
+            {
+                "id": 3,
+                "name": "OnePlus 9",
+                "brand": "OnePlus",
+                "price": 699,
+                "image": "https://tse3.mm.bing.net/th?id=OIP.W9o6-bHR1otieOR9-kCXAgHaJB&pid=Api&P=0&h=180",
+                "description": "Fast charging and smooth performance"
+            },
+            {
+                "id": 4,
+                "name": "Realme 9i 5g",
+                "brand": "realme",
+                "price": 800,
+                "image": "https://specs-arena.com/wp-content/uploads/2023/11/Realme-9i-5G.webp",
+                "description": "Fast charging and smooth performance" 
+            }
+        ];
+
+        // Function to display mobile data
+        function displayMobiles() {
+            const mobileList = document.getElementById('mobile-list');
+            mobiles.forEach(mobile => {
+                const mobileDiv = document.createElement('div');
+                mobileDiv.classList.add('mobile');
+                
+                mobileDiv.innerHTML = `
+                    <img src="${mobile.image}" alt="${mobile.name}">
+                    <h3>${mobile.name}</h3>
+                    <p><strong>Brand:</strong> ${mobile.brand}</p>
+                    <p><strong>Price:</strong> $${mobile.price}</p>
+                    <p>${mobile.description}</p>
+                    <div class="buttons">
+                        <button onclick="buyNow(${mobile.id})">Buy Now</button>
+                        <button onclick="addToCart(${mobile.id})">Add to Cart</button>
+                    </div>
+                `;
+                
+                mobileList.appendChild(mobileDiv);
+            });
+        }
+
+        // Example functions for "Buy Now" and "Add to Cart"
+        function buyNow(id) {
+            alert('You bought mobile with ID ' + id);
+        }
+
+        function addToCart(id) {
+            alert('Mobile with ID ' + id + ' added to the cart');
+        }
+
+        // Display mobiles when the page loads
+        window.onload = displayMobiles;
+    </script>
+
+</body>
+</html>
