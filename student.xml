@@ -1,0 +1,65 @@
+import xml.etree.ElementTree as ET
+
+# Sample XML Data
+xml_data = '''<?xml version="1.0" encoding="UTF-8"?>
+<students>
+    <student>
+        <hallticket>1001</hallticket>
+        <name>John Doe</name>
+        <age>20</age>
+        <grade>A</grade>
+    </student>
+    <student>
+        <hallticket>1002</hallticket>
+        <name>Jane Smith</name>
+        <age>22</age>
+        <grade>B</grade>
+    </student>
+    <student>
+        <hallticket>1003</hallticket>
+        <name>Michael Johnson</name>
+        <age>21</age>
+        <grade>A</grade>
+    </student>
+    <student>
+        <hallticket>1004</hallticket>
+        <name>Emily Brown</name>
+        <age>19</age>
+        <grade>B+</grade>
+    </student>
+    <student>
+        <hallticket>1005</hallticket>
+        <name>David Wilson</name>
+        <age>23</age>
+        <grade>A-</grade>
+    </student>
+</students>'''
+
+# Parsing the XML data
+root = ET.fromstring(xml_data)
+
+# Function to get student details by hallticket number
+def get_student_details(hallticket_number):
+    for student in root.findall('student'):
+        hallticket = student.find('hallticket').text
+        if hallticket == hallticket_number:
+            name = student.find('name').text
+            age = student.find('age').text
+            grade = student.find('grade').text
+            return {
+                'Hallticket': hallticket,
+                'Name': name,
+                'Age': age,
+                'Grade': grade
+            }
+    return "Student not found."
+
+# Input from the user
+hallticket_number = input("Enter hall ticket number: ")
+student_details = get_student_details(hallticket_number)
+
+# Output the details
+if isinstance(student_details, dict):
+    print(f"Student Details:\nHallticket: {student_details['Hallticket']}\nName: {student_details['Name']}\nAge: {student_details['Age']}\nGrade: {student_details['Grade']}")
+else:
+    print(student_details)
